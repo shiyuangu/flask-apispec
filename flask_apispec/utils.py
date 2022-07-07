@@ -90,6 +90,10 @@ def merge_recursive(values):
     return functools.reduce(_merge_recursive, values, {})
 
 def _merge_recursive(child, parent):
+    """
+    commented by sgu
+    child, parent: None or dict. if it's a  dict, dict[k] can only be another dict or None. 
+    """
     if isinstance(child, dict) or isinstance(parent, dict):
         child = child or {}
         parent = parent or {}
