@@ -54,6 +54,7 @@ class Wrapper:
     def marshal_result(self, result, status_code):
         config = flask.current_app.config
         format_response = config.get('APISPEC_FORMAT_RESPONSE', flask.jsonify) or identity
+        #sgu: because of the merge, we cannot apply the schema to some status code but not the other.  
         annotation = utils.resolve_annotations(self.func, 'schemas', self.instance)
         schemas = utils.merge_recursive(annotation.options)
         schema = schemas.get(status_code, schemas.get('default'))
